@@ -1,0 +1,96 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.howtodoinjava.com/xml/feature" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.howtodoinjava.com/xml/feature" targetNamespace="http://www.howtodoinjava.com/xml/feature">
+<wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.howtodoinjava.com/xml/feature">
+<!--  getFeatureDetail  -->
+<element name="getFeatureDetailRequest" type="tns:GetFeatureDetailRequestType"/>
+<element name="getFeatureDetailResponse" type="tns:GetFeatureDetailResponseType"/>
+<complexType name="GetFeatureDetailRequestType">
+<sequence>
+<element minOccurs="0" name="dates" type="tns:DatesType"/>
+<element minOccurs="0" name="entities" type="tns:EntitiesType"/>
+<element minOccurs="0" name="features" type="tns:FeaturesType"/>
+<element minOccurs="0" name="applications" type="tns:ApplicationsType"/>
+</sequence>
+</complexType>
+<complexType name="GetFeatureDetailResponseType">
+<sequence>
+<element name="featureDetails" type="tns:FeatureDetailsType"/>
+<element name="status" type="tns:StatusType"/>
+</sequence>
+</complexType>
+<complexType name="DatesType">
+<sequence>
+<element maxOccurs="unbounded" name="date" type="string"/>
+</sequence>
+</complexType>
+<complexType name="EntitiesType">
+<sequence>
+<element maxOccurs="unbounded" name="entity" type="string"/>
+</sequence>
+</complexType>
+<complexType name="FeaturesType">
+<sequence>
+<element maxOccurs="unbounded" name="feature" type="string"/>
+</sequence>
+</complexType>
+<complexType name="ApplicationsType">
+<sequence>
+<element maxOccurs="unbounded" name="application" type="string"/>
+</sequence>
+</complexType>
+<complexType name="FeatureDetailsType">
+<sequence>
+<element maxOccurs="unbounded" name="featureDetail" type="tns:FeatureDetailType"/>
+</sequence>
+</complexType>
+<complexType name="FeatureDetailType">
+<sequence>
+<element minOccurs="1" name="featureEntity" type="string"/>
+<element minOccurs="1" name="featureId" type="string"/>
+<element minOccurs="1" name="featureDescription" type="string"/>
+<element minOccurs="1" name="featureAbbr" type="string"/>
+<element minOccurs="1" name="featureAppId" type="string"/>
+<element minOccurs="1" name="featureValue" type="string"/>
+<element minOccurs="1" name="featureEFD" type="string"/>
+<element minOccurs="1" name="featureEXD" type="string"/>
+<element minOccurs="1" name="featureUPD" type="string"/>
+</sequence>
+</complexType>
+<complexType name="StatusType">
+<sequence>
+<element name="Status" type="string"/>
+<element name="ErrorDesc" type="string"/>
+</sequence>
+</complexType>
+</schema>
+</wsdl:types>
+<wsdl:message name="getFeatureDetailRequest">
+<wsdl:part element="tns:getFeatureDetailRequest" name="getFeatureDetailRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getFeatureDetailResponse">
+<wsdl:part element="tns:getFeatureDetailResponse" name="getFeatureDetailResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="FeatureDetailsPort">
+<wsdl:operation name="getFeatureDetail">
+<wsdl:input message="tns:getFeatureDetailRequest" name="getFeatureDetailRequest"> </wsdl:input>
+<wsdl:output message="tns:getFeatureDetailResponse" name="getFeatureDetailResponse"> </wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="FeatureDetailsPortSoap11" type="tns:FeatureDetailsPort">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="getFeatureDetail">
+<soap:operation soapAction=""/>
+<wsdl:input name="getFeatureDetailRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getFeatureDetailResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="FeatureDetailsPortService">
+<wsdl:port binding="tns:FeatureDetailsPortSoap11" name="FeatureDetailsPortSoap11">
+<soap:address location="http://localhost:8080/service/feature-details"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

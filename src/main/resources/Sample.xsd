@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Vas.xsd $ -->
+
+<schema xmlns:tns="http://www.howtodoinjava.com/xml/feature" xmlns="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.howtodoinjava.com/xml/feature">
+
+  <!-- getFeatureDetail -->
+  <element name="getFeatureDetailRequest" type="tns:GetFeatureDetailRequestType" />
+
+  <element name="getFeatureDetailResponse" type="tns:GetFeatureDetailResponseType" />
+
+  <complexType name="GetFeatureDetailRequestType">
+    <sequence>
+      <element name="dates" type="tns:DatesType" minOccurs="0" />
+      <element name="entities" type="tns:EntitiesType"
+        minOccurs="0" />
+      <element name="features" type="tns:FeaturesType"
+        minOccurs="0" />
+      <element name="applications" type="tns:ApplicationsType"
+        minOccurs="0" />
+    </sequence>
+  </complexType>
+
+  <complexType name="GetFeatureDetailResponseType">
+    <sequence>
+      <element name="featureDetails" type="tns:FeatureDetailsType" />
+      <element name="status" type="tns:StatusType" />
+    </sequence>
+  </complexType>
+
+  <complexType name="DatesType">
+    <sequence>
+      <element name="date" type="string" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+
+  <complexType name="EntitiesType">
+    <sequence>
+      <element name="entity" type="string" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+
+
+  <complexType name="FeaturesType">
+    <sequence>
+      <element name="feature" type="string" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+
+  <complexType name="ApplicationsType">
+    <sequence>
+      <element name="application" type="string" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+
+  <complexType name="FeatureDetailsType">
+    <sequence>
+      <element name="featureDetail" type="tns:FeatureDetailType"
+        maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+
+  <complexType name="FeatureDetailType">
+    <sequence>
+      <element name="featureEntity" type="string" minOccurs="1" />
+      <element name="featureId" type="string" minOccurs="1" />
+      <element name="featureDescription" type="string"
+        minOccurs="1" />
+      <element name="featureAbbr" type="string" minOccurs="1" />
+      <element name="featureAppId" type="string" minOccurs="1" />
+      <element name="featureValue" type="string" minOccurs="1" />
+      <element name="featureEFD" type="string" minOccurs="1" />
+      <element name="featureEXD" type="string" minOccurs="1" />
+      <element name="featureUPD" type="string" minOccurs="1" />
+    </sequence>
+  </complexType>
+
+  <complexType name="StatusType">
+    <sequence>
+      <element name="Status" type="string"></element>
+      <element name="ErrorDesc" type="string"></element>
+    </sequence>
+  </complexType>
+</schema>
